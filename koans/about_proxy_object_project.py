@@ -16,16 +16,52 @@
 # Note: This is a bit trickier than its Ruby Koans counterpart, but you
 # can do it!
 
+from typing import Any
 from runner.koan import *
+
 
 class Proxy:
     def __init__(self, target_object):
         # WRITE CODE HERE
 
-        #initialize '_obj' attribute last. Trust me on this!
-        self._obj = target_object
+        # initialize '_obj' attribute last. Trust me on this!
+        self._obj = target_object 
+        self._messages = dict() 
+        
+    def __getattribute__(self, __name: str) -> Any:
+        if __name == '_obj':
+            return super().__getattribute__(__name)   
+        if __name == '_messages':
+            return super().__getattribute__(__name)  
+        if __name == 'was_called':
+            return lambda name: name in self._messages
+        if __name == 'number_of_times_called':
+            return lambda name: self._messages[name] if name in self._messages else 0
+        
+        if __name == 'messages':
+            return lambda: [k for (k,v) in self._messages.items()]
+        
+        dic = self._messages
+        Proxy.countCall(dic, __name)
+        
+        return self._obj.__getattribute__(__name)
+    
+    def __setattr__(self, __name: str, __value: Any) -> None:
+        if __name == '_obj' or __name == '_messages' :
+            return super().__setattr__(__name, __value)
+        
+        dic = self._messages
+        Proxy.countCall(dic, __name)
+        
+        return self._obj.__setattr__(__name, __value)
+    
+    @staticmethod
+    def countCall(dic,name):
+        if name in dic:
+            dic[name]+=1
+        else:
+            dic[name]=1
 
-    # WRITE CODE HERE
 
 # The proxy object should pass the following Koan:
 #
@@ -51,7 +87,7 @@ class AboutProxyObjectProject(Koan):
         tv.power()
         tv.channel = 10
 
-        self.assertEqual(['power', 'channel'], tv.messages())
+        self.assertEqual(["power", "channel"], tv.messages())
 
     def test_proxy_handles_invalid_messages(self):
         tv = Proxy(Television())
@@ -59,15 +95,14 @@ class AboutProxyObjectProject(Koan):
         with self.assertRaises(AttributeError):
             tv.no_such_method()
 
-
     def test_proxy_reports_methods_have_been_called(self):
         tv = Proxy(Television())
 
         tv.power()
         tv.power()
 
-        self.assertTrue(tv.was_called('power'))
-        self.assertFalse(tv.was_called('channel'))
+        self.assertTrue(tv.was_called("power"))
+        self.assertFalse(tv.was_called("channel"))
 
     def test_proxy_counts_method_calls(self):
         tv = Proxy(Television())
@@ -76,9 +111,9 @@ class AboutProxyObjectProject(Koan):
         tv.channel = 48
         tv.power()
 
-        self.assertEqual(2, tv.number_of_times_called('power'))
-        self.assertEqual(1, tv.number_of_times_called('channel'))
-        self.assertEqual(0, tv.number_of_times_called('is_on'))
+        self.assertEqual(2, tv.number_of_times_called("power"))
+        self.assertEqual(1, tv.number_of_times_called("channel"))
+        self.assertEqual(0, tv.number_of_times_called("is_on"))
 
     def test_proxy_can_record_more_than_just_tv_objects(self):
         proxy = Proxy("Py Ohio 2010")
@@ -90,7 +125,8 @@ class AboutProxyObjectProject(Koan):
         result = proxy.split()
 
         self.assertEqual(["Py", "Ohio", "2010"], result)
-        self.assertEqual(['upper', 'split'], proxy.messages())
+        self.assertEqual(["upper", "split"], proxy.messages())
+
 
 # ====================================================================
 # The following code is to support the testing of the Proxy class.  No
@@ -111,13 +147,14 @@ class Television:
         self._channel = value
 
     def power(self):
-        if self._power == 'on':
-            self._power = 'off'
+        if self._power == "on":
+            self._power = "off"
         else:
-            self._power = 'on'
+            self._power = "on"
 
     def is_on(self):
-        return self._power == 'on'
+        return self._power == "on"
+
 
 # Tests for the Television class.  All of theses tests should pass.
 class TelevisionTest(Koan):

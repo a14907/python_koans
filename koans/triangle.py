@@ -3,6 +3,7 @@
 
 # Triangle Project Code.
 
+
 # Triangle analyzes the lengths of the sides of a triangle
 # (represented by a, b and c) and returns the type of triangle.
 #
@@ -17,8 +18,17 @@
 #   about_triangle_project_2.py
 #
 def triangle(a, b, c):
-    # DELETE 'PASS' AND WRITE THIS CODE
-    pass
+    if a <= 0 or b <= 0 or c <= 0:
+        raise TriangleError()
+    elif (a + b) <= c or (a + c) <= b or (c + b) <= a:
+        raise TriangleError()
+    elif a == b and b == c:
+        return "equilateral"
+    elif a == b or b == c or a == c:
+        return "isosceles"
+    else:
+        return "scalene"
+
 
 # Error class used in part 2.  No need to change this code.
 class TriangleError(Exception):

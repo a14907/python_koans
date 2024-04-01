@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8c390737-a482-492c-981a-1528ea832951}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>contemplate_koans.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId />
+    <TestFramework>Pytest</TestFramework>
+    <SuppressConfigureTestFrameworkPrompt>true</SuppressConfigureTestFrameworkPrompt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Contributor Notes.txt" />
+    <Content Include="example_file.txt" />
+    <Content Include="koans.txt" />
+    <Content Include="koans\GREEDS_RULES.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="contemplate_koans.py" />
+    <Compile Include="koans\about_asserts.py" />
+    <Compile Include="koans\about_attribute_access.py" />
+    <Compile Include="koans\about_classes.py" />
+    <Compile Include="koans\about_class_attributes.py" />
+    <Compile Include="koans\about_comprehension.py" />
+    <Compile Include="koans\about_control_statements.py" />
+    <Compile Include="koans\about_decorating_with_classes.py" />
+    <Compile Include="koans\about_decorating_with_functions.py" />
+    <Compile Include="koans\about_deleting_objects.py" />
+    <Compile Include="koans\about_dice_project.py" />
+    <Compile Include="koans\about_dictionaries.py" />
+    <Compile Include="koans\about_exceptions.py" />
+    <Compile Include="koans\about_extra_credit.py" />
+    <Compile Include="koans\about_generators.py" />
+    <Compile Include="koans\about_inheritance.py" />
+    <Compile Include="koans\about_iteration.py" />
+    <Compile Include="koans\about_lambdas.py" />
+    <Compile Include="koans\about_lists.py" />
+    <Compile Include="koans\about_list_assignments.py" />
+    <Compile Include="koans\about_methods.py" />
+    <Compile Include="koans\about_method_bindings.py" />
+    <Compile Include="koans\about_modules.py" />
+    <Compile Include="koans\about_monkey_patching.py" />
+    <Compile Include="koans\about_multiple_inheritance.py" />
+    <Compile Include="koans\about_none.py" />
+    <Compile Include="koans\about_packages.py" />
+    <Compile Include="koans\about_proxy_object_project.py" />
+    <Compile Include="koans\about_regex.py" />
+    <Compile Include="koans\about_scope.py" />
+    <Compile Include="koans\about_scoring_project.py" />
+    <Compile Include="koans\about_sets.py" />
+    <Compile Include="koans\about_strings.py" />
+    <Compile Include="koans\about_string_manipulation.py" />
+    <Compile Include="koans\about_triangle_project.py" />
+    <Compile Include="koans\about_triangle_project2.py" />
+    <Compile Include="koans\about_true_and_false.py" />
+    <Compile Include="koans\about_tuples.py" />
+    <Compile Include="koans\about_with_statements.py" />
+    <Compile Include="koans\another_local_module.py" />
+    <Compile Include="koans\a_package_folder\a_module.py" />
+    <Compile Include="koans\a_package_folder\__init__.py" />
+    <Compile Include="koans\jims.py" />
+    <Compile Include="koans\joes.py" />
+    <Compile Include="koans\local_module.py" />
+    <Compile Include="koans\local_module_with_all_defined.py" />
+    <Compile Include="koans\triangle.py" />
+    <Compile Include="koans\__init__.py" />
+    <Compile Include="libs\colorama\ansi.py" />
+    <Compile Include="libs\colorama\ansitowin32.py" />
+    <Compile Include="libs\colorama\initialise.py" />
+    <Compile Include="libs\colorama\win32.py" />
+    <Compile Include="libs\colorama\winterm.py" />
+    <Compile Include="libs\colorama\__init__.py" />
+    <Compile Include="libs\mock.py" />
+    <Compile Include="libs\__init__.py" />
+    <Compile Include="runner\helper.py" />
+    <Compile Include="runner\koan.py" />
+    <Compile Include="runner\mockable_test_result.py" />
+    <Compile Include="runner\mountain.py" />
+    <Compile Include="runner\path_to_enlightenment.py" />
+    <Compile Include="runner\runner_tests\test_helper.py" />
+    <Compile Include="runner\runner_tests\test_mountain.py" />
+    <Compile Include="runner\runner_tests\test_path_to_enlightenment.py" />
+    <Compile Include="runner\runner_tests\test_sensei.py" />
+    <Compile Include="runner\runner_tests\__init__.py" />
+    <Compile Include="runner\sensei.py" />
+    <Compile Include="runner\writeln_decorator.py" />
+    <Compile Include="runner\__init__.py" />
+    <Compile Include="scent.py" />
+    <Compile Include="_runner_tests.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="koans" />
+    <Folder Include="koans\a_package_folder" />
+    <Folder Include="libs" />
+    <Folder Include="libs\colorama" />
+    <Folder Include="runner" />
+    <Folder Include="runner\runner_tests" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+</Project>
